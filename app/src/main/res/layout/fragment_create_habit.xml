@@ -13,22 +13,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Create New Habit"
-            android:textSize="26sp"
             android:textStyle="bold"
-            android:layout_marginBottom="24dp" />
+            android:textSize="26sp"
+            android:layout_marginBottom="24dp"/>
 
         <EditText
             android:id="@+id/txtHabitName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Habit name" />
+            android:hint="Habit name"/>
 
         <EditText
             android:id="@+id/txtHabitDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Description"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"/>
 
         <EditText
             android:id="@+id/txtHabitGoal"
@@ -36,21 +36,20 @@
             android:layout_height="wrap_content"
             android:hint="Goal amount"
             android:inputType="number"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"/>
 
         <Spinner
             android:id="@+id/spinnerIcon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"/>
 
         <Button
             android:id="@+id/btnCreateHabit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Create Habit"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="24dp"/>
 
     </LinearLayout>
-
 </ScrollView>

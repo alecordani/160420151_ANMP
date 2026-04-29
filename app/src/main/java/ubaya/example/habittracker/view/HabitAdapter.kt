@@ -35,8 +35,10 @@ class HabitAdapter(private val habitList: ArrayList<Habit>)
 
         if (habit.progress >= habit.goal) {
             holder.binding.txtStatus.text = "Completed"
+            holder.binding.txtStatus.setTextColor(android.graphics.Color.GREEN)
         } else {
             holder.binding.txtStatus.text = "In Progress"
+            holder.binding.txtStatus.setTextColor(android.graphics.Color.parseColor("#6F42C1"))
         }
 
         holder.binding.btnPlus.setOnClickListener {
