@@ -8,24 +8,39 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="ubaya.example.habittracker.view.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+
         <action
             android:id="@+id/actionDashboardFragment"
             app:destination="@id/dashboardFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="ubaya.example.habittracker.view.DashboardFragment"
-        android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" >
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard">
+
         <action
             android:id="@+id/actionCreateHabitFragment"
             app:destination="@id/createHabitFragment" />
+
+        <action
+            android:id="@+id/actionEditHabitFragment"
+            app:destination="@id/editHabitFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/createHabitFragment"
         android:name="ubaya.example.habittracker.view.CreateHabitFragment"
-        android:label="fragment_create_habit"
+        android:label="Create Habit"
         tools:layout="@layout/fragment_create_habit" />
+
+    <fragment
+        android:id="@+id/editHabitFragment"
+        android:name="ubaya.example.habittracker.view.EditHabitFragment"
+        android:label="Edit Habit"
+        tools:layout="@layout/fragment_edit_habit" />
+
 </navigation>

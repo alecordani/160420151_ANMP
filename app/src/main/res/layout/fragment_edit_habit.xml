@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="habit"
+            type="ubaya.example.habittracker.model.Habit" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update Habit"
+                android:textStyle="bold"
+                android:textSize="26sp"
+                android:layout_marginBottom="24dp"/>
+
+            <EditText
+                android:id="@+id/txtEditHabitName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Habit Name"
+                android:text="@={habit.name}" />
+
+            <EditText
+                android:id="@+id/txtEditHabitDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Description"
+                android:layout_marginTop="16dp"
+                android:text="@={habit.description}" />
+
+            <EditText
+                android:id="@+id/txtEditHabitGoal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Goal"
+                android:inputType="number"
+                android:layout_marginTop="16dp"
+                android:text="@={`` + habit.goal}" />
+
+            <EditText
+                android:id="@+id/txtEditHabitIcon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Icon"
+                android:layout_marginTop="16dp"
+                android:text="@={habit.icon}" />
+
+            <Button
+                android:id="@+id/btnUpdateHabit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:layout_marginTop="24dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

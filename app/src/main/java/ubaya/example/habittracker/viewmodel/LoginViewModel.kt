@@ -7,41 +7,43 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import ubaya.example.habittracker.model.Habit
 import ubaya.example.habittracker.model.HabitDatabase
+import ubaya.example.habittracker.model.User
 import kotlin.coroutines.CoroutineContext
 
-class HabitViewModel(application: Application)
+class LoginViewModel(application: Application)
     : AndroidViewModel(application), CoroutineScope {
 
-    val habitsLD = MutableLiveData<ArrayList<Habit>>()
+    val loginSuccessLD = MutableLiveData<Boolean>()
 
     private val job = Job()
 
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
 
-    fun loadHabits() {
+    fun login(username: String, password: String) {
         launch {
             val db = HabitDatabase.buildDatabase(getApplication())
-            val habits = db.habitDao().selectAllHabit()
-            habitsLD.postValue(ArrayList(habits))
+            val user = db.userDao().login(username, password)
+
+            if (user != null) {
+                loginSuccessLD.postValue(true)
+            } else {
+                loginSuccessLD.postValue(false)
+            }
         }
     }
 
-    fun addHabit(habit: Habit) {
+    fun insertDefaultUser() {
         launch {
             val db = HabitDatabase.buildDatabase(getApplication())
-            db.habitDao().insertAll(habit)
-            loadHabits()
-        }
-    }
+            val user = db.userDao().login("student", "123")
 
-    fun updateHabit(habit: Habit) {
-        launch {
-            val db = HabitDatabase.buildDatabase(getApplication())
-            db.habitDao().updateHabit(habit)
-            loadHabits()
+            if (user == null) {
+                db.userDao().insertAll(
+                    User("student", "123")
+                )
+            }
         }
     }
 }

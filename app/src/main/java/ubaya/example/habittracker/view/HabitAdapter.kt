@@ -6,8 +6,16 @@ import androidx.recyclerview.widget.RecyclerView
 import ubaya.example.habittracker.databinding.HabitItemBinding
 import ubaya.example.habittracker.model.Habit
 
-class HabitAdapter(private val habitList: ArrayList<Habit>)
-    : RecyclerView.Adapter<HabitAdapter.HabitViewHolder>() {
+class HabitAdapter(
+    private val habitList: ArrayList<Habit>,
+    private val listener: HabitClickListener
+) : RecyclerView.Adapter<HabitAdapter.HabitViewHolder>() {
+
+    interface HabitClickListener {
+        fun onPlusClick(habit: Habit)
+        fun onMinusClick(habit: Habit)
+        fun onHabitTitleClick(habit: Habit)
+    }
 
     class HabitViewHolder(var binding: HabitItemBinding)
         : RecyclerView.ViewHolder(binding.root)
@@ -24,36 +32,9 @@ class HabitAdapter(private val habitList: ArrayList<Habit>)
     }
 
     override fun onBindViewHolder(holder: HabitViewHolder, position: Int) {
-        val habit = habitList[position]
-
-        holder.binding.txtIcon.text = habit.icon
-        holder.binding.txtHabitName.text = habit.name
-        holder.binding.txtHabitDesc.text = habit.description
-        holder.binding.txtHabitGoal.text = "${habit.progress}/${habit.goal}"
-        holder.binding.progressHabit.max = habit.goal
-        holder.binding.progressHabit.progress = habit.progress
-
-        if (habit.progress >= habit.goal) {
-            holder.binding.txtStatus.text = "Completed"
-            holder.binding.txtStatus.setTextColor(android.graphics.Color.GREEN)
-        } else {
-            holder.binding.txtStatus.text = "In Progress"
-            holder.binding.txtStatus.setTextColor(android.graphics.Color.parseColor("#6F42C1"))
-        }
-
-        holder.binding.btnPlus.setOnClickListener {
-            if (habit.progress < habit.goal) {
-                habit.progress++
-                notifyItemChanged(position)
-            }
-        }
-
-        holder.binding.btnMinus.setOnClickListener {
-            if (habit.progress > 0) {
-                habit.progress--
-                notifyItemChanged(position)
-            }
-        }
+        holder.binding.habit = habitList[position]
+        holder.binding.listener = listener
+        holder.binding.executePendingBindings()
     }
 
     fun updateHabitList(newHabitList: ArrayList<Habit>) {
